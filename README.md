@@ -12,7 +12,10 @@ Karabiner-Elements.
 
 - [SpaceFN - Filco Minila](rules/SpaceFN_FilcoMinila.json)
   - Use the `spacebar` as `Fn` key on a Filco Minila keyboard.
-    > - `spacebar` + `e/d/s/f` = `up/down/left/right arrow keys`
+    > - `spacebar` + `e` = `up arrow`
+    > - `spacebar` + `d` = `down arrow`
+    > - `spacebar` + `s` = `left arrow`
+    > - `spacebar` + `f` = `right arrow`
     > - `spacebar` + `k` = `home`
     > - `spacebar` + `,` = `end`
     > - `spacebar` + `l` = `page up`
