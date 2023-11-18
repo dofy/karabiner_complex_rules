@@ -46,12 +46,33 @@
       ]
     },
     {
-      "description": "SpaceFN: Space+b to Space (hold to repeat)",
+      "description": "SpaceFN: Space+[b enter] to Space (hold to repeat)",
       "manipulators": [
         {
           "type": "basic",
           "from": {
             "key_code": "b",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "spacefn_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "return_or_enter",
             "modifiers": {
               "optional": ["any"]
             }
