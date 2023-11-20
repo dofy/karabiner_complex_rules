@@ -46,7 +46,7 @@
       ]
     },
     {
-      "description": "SpaceFN: Space+[b enter] to Space (hold to repeat)",
+      "description": "SpaceFN: Space+b to Space (hold to repeat)",
       "manipulators": [
         {
           "type": "basic",
@@ -68,7 +68,12 @@
               "value": 1
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "description": "SpaceFN: Space+Enter to Space and Enter (hold to repeat Enter)",
+      "manipulators": [
         {
           "type": "basic",
           "from": {
@@ -80,6 +85,9 @@
           "to": [
             {
               "key_code": "spacebar"
+            },
+            {
+              "key_code": "return_or_enter"
             }
           ],
           "conditions": [
