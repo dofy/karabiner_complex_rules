@@ -23,3 +23,14 @@ Karabiner-Elements.
     > - `spacebar` + `j` = `insert`
     > - `spacebar` + `m` = `delete`
     > - `spacebar` + `;` = `backspace`
+- [App-specific Arrow Navigation](rules/AppArrowNavigation.json)
+  - Remap `ctrl` + arrows, and the volume keys, per frontmost application.
+    > iTerm2:
+    > - `ctrl` + `left arrow` = `ctrl-a h` (tmux previous window)
+    > - `ctrl` + `right arrow` = `ctrl-a l` (tmux next window)
+    >
+    > Google Chrome:
+    > - `ctrl` + `left arrow` = `cmd` + `[` (history back)
+    > - `ctrl` + `right arrow` = `cmd` + `]` (history forward)
+    > - `volume up` = `cmd` + `shift` + `[` (previous tab)
+    > - `volume down` = `cmd` + `shift` + `]` (next tab)
