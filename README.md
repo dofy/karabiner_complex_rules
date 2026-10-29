@@ -65,6 +65,61 @@ The Chrome rules match `com.google.Chrome` only. Beta, Canary, and Chromium ship
 their own bundle identifiers, so add them to `bundle_identifiers` if you run one
 of those. The volume keys keep adjusting the volume in every other application.
 
+## Keeping several Macs in sync
+
+Karabiner-Elements has no sync of its own, and `karabiner.json` is a poor thing
+to copy between machines: it also holds `devices[]` (the hardware attached to
+*that* Mac, with its own per-device `simple_modifications`) and
+`machine_specific`, which is keyed by a per-installation UUID. Copy the whole
+file and each Mac overwrites the other's hardware settings, with no merge and no
+warning about which edit just disappeared.
+
+So only the rules are shared, through this repository, and each Mac keeps its own
+copy of everything else:
+
+```
+shared, in git   complex_modifications rules
+machine-local    devices[] · machine_specific · which profile is selected
+```
+
+Two scripts move rules across that line. Both default to the profile Karabiner
+currently has selected, take `-p` to name another one, and take `-n` to show
+what they would do without writing anything.
+
+```bash
+./apply.sh      # rules/*.json  ->  karabiner.json
+./extract.sh    # karabiner.json  ->  rules/*.json
+```
+
+Rules are matched by `description`, which is therefore the one field you cannot
+edit casually — changing it makes a new rule rather than updating the old one,
+and `apply.sh` refuses to run if two files claim the same description.
+
+`apply.sh` replaces a rule where it already sits, so evaluation order (first
+match wins) does not drift, and appends rules the profile has not seen. Rules no
+file claims are left alone, which is what lets a machine keep a local experiment
+that is not worth sharing. It backs `karabiner.json` up under
+`~/.local/state/karabiner-rules-sync/backups/` first, keeping the last ten.
+
+`extract.sh` writes each rule back to the file that already names it, and lists
+anything enabled in the profile that no file tracks. A rule that is in git but
+switched off on this Mac is kept as it was, so one machine cannot delete a rule
+for the others by not using it.
+
+The round trip, from either Mac:
+
+```bash
+git pull && ./apply.sh          # take what the other Mac changed
+./extract.sh && git diff        # hand GUI edits back to git
+git commit -am "..." && git push
+```
+
+**Quit the Karabiner-Elements Settings window before running `apply.sh`.** While
+it is open it holds the configuration in memory and writes it back on any
+change, which would silently undo the script; `apply.sh` checks for it and
+refuses to run. With the window closed, `karabiner_console_user_server` notices
+the file change and reloads on its own — no restart, no GUI step.
+
 ## License
 
 [MIT](LICENSE)
