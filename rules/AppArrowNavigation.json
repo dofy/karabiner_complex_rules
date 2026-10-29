@@ -30,6 +30,7 @@
           },
           "to": [
             {
+              "hold_down_milliseconds": 30,
               "key_code": "a",
               "modifiers": [
                 "left_control"
@@ -67,6 +68,7 @@
           },
           "to": [
             {
+              "hold_down_milliseconds": 30,
               "key_code": "a",
               "modifiers": [
                 "left_control"
